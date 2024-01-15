@@ -77,4 +77,4 @@ $map = Stream::intRangeClosed(1,10)->collect(Collectors::groupingBy(fn($x) => $x
 
 Documentation produced using phpDocumentor:
 
-- ` podman run --rm -v ${PWD}:/data phpdoc/phpdoc:3 -d ./src -t ./docs/api`
+- `podman run --rm -v ${PWD}:/data phpdoc/phpdoc:3 -d ./src -t ./docs/api`
