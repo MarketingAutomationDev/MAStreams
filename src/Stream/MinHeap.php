@@ -1,6 +1,6 @@
 <?php
 
-namespace RDA\Stream;
+namespace MA\Stream;
 
 use Traversable;
 

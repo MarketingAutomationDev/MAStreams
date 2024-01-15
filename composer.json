@@ -1,5 +1,5 @@
 {
-  "name": "r-da/php-streams",
+  "name": "marketing-automation/php-streams",
   "description": "PHP lazy Java-like streams",
   "minimum-stability": "stable",
   "license": "proprietary",
@@ -7,7 +7,7 @@
   "authors": [
     {
       "name": "Raffaele Dell'Aversana",
-      "email": "r.dellaversana@gmail.com"
+      "email": "raffaele.dellaversana@marketingautomation.it"
     }
   ],
   "require": {
@@ -18,7 +18,7 @@
     "files": [
     ],
     "psr-4": {
-      "RDA\\Stream\\": "src/Stream"
+      "MA\\Stream\\": "src/Stream"
     }
   }
 }

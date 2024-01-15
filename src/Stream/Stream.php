@@ -1,6 +1,6 @@
 <?php
 
-namespace RDA\Stream;
+namespace MA\Stream;
 
 // https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html#flatMap-java.util.function.Function-
 use Closure;

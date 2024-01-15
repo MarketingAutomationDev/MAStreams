@@ -1,5 +1,5 @@
 <?php
-namespace RDA\Stream;
+namespace MA\Stream;
 
 // TODO supplier e accumulator non dovrebbero usare mixed sul mutable result container
 
