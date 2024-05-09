@@ -191,6 +191,13 @@ and source elements are consumed only as needed.</p>
 <dd>Returns whether any elements of this stream match the provided predicate.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/MA-Stream-Stream.html#method_chunk">chunk()</a>
+    <span>
+                                &nbsp;: <a href="classes/MA-Stream-Stream.html"><abbr title="\MA\Stream\Stream">Stream</abbr></a>    </span>
+</dt>
+<dd>Returns a stream consisting of chunks with length elements.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/MA-Stream-Stream.html#method_collect">collect()</a>
     <span>
                                 &nbsp;: mixed    </span>
@@ -237,6 +244,13 @@ after dropping the longest prefix of elements that match the given predicate.</d
     <span>
                                 &nbsp;: <a href="classes/MA-Stream-Stream.html"><abbr title="\MA\Stream\Stream">Stream</abbr></a>    </span>
 </dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/MA-Stream-Stream.html#method_findFirst">findFirst()</a>
+    <span>
+                                &nbsp;: mixed|null    </span>
+</dt>
+<dd>Returns the first element of this stream, or an null if the stream is empty.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a href="classes/MA-Stream-Stream.html#method_flatMap">flatMap()</a>
@@ -527,6 +541,56 @@ If the stream is empty then false is returned and the predicate is not evaluated
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_chunk">
+        chunk()
+        <a href="classes/MA-Stream-Stream.html#method_chunk" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Stream/Stream.php"><a href="files/src-stream-stream.html"><abbr title="src/Stream/Stream.php">Stream.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">658</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns a stream consisting of chunks with length elements.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">chunk</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$chunkSize</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/MA-Stream-Stream.html"><abbr title="\MA\Stream\Stream">Stream</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>The last chunk may contain less than length elements.
+Each chunk is an array.</p>
+<p>This is a stateful intermediate operation.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$chunkSize</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/MA-Stream-Stream.html"><abbr title="\MA\Stream\Stream">Stream</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_collect">
         collect()
         <a href="classes/MA-Stream-Stream.html#method_collect" class="headerlink"><i class="fas fa-link"></i></a>
@@ -535,7 +599,7 @@ If the stream is empty then false is returned and the predicate is not evaluated
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Stream/Stream.php"><a href="files/src-stream-stream.html"><abbr title="src/Stream/Stream.php">Stream.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">659</span>
+    <span class="phpdocumentor-element-found-in__line">705</span>
 
     </aside>
 
@@ -710,7 +774,7 @@ followed by all the elements of the second stream.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Stream/Stream.php"><a href="files/src-stream-stream.html"><abbr title="src/Stream/Stream.php">Stream.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">638</span>
+    <span class="phpdocumentor-element-found-in__line">642</span>
 
     </aside>
 
@@ -723,7 +787,9 @@ after dropping the longest prefix of elements that match the given predicate.</p
 
     <div class="phpdocumentor-label-line">
         </div>
-    
+        <section class="phpdocumentor-description"><p>This is a stateful intermediate operation.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -820,6 +886,44 @@ after dropping the longest prefix of elements that match the given predicate.</p
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/MA-Stream-Stream.html"><abbr title="\MA\Stream\Stream">Stream</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_findFirst">
+        findFirst()
+        <a href="classes/MA-Stream-Stream.html#method_findFirst" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Stream/Stream.php"><a href="files/src-stream-stream.html"><abbr title="src/Stream/Stream.php">Stream.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">700</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns the first element of this stream, or an null if the stream is empty.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">findFirst</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+        <section class="phpdocumentor-description"><p>This is a short-circuiting terminal operation.</p>
+</section>
+
+    
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed|null</span>
             </section>
 
 </article>
@@ -927,7 +1031,7 @@ with the contents of each element of the Traversable or array, recursively.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Stream/Stream.php"><a href="files/src-stream-stream.html"><abbr title="src/Stream/Stream.php">Stream.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">652</span>
+    <span class="phpdocumentor-element-found-in__line">686</span>
 
     </aside>
 
@@ -1787,7 +1891,7 @@ sorted according to natural order or to the provided Comparator.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Stream/Stream.php"><a href="files/src-stream-stream.html"><abbr title="src/Stream/Stream.php">Stream.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">612</span>
+    <span class="phpdocumentor-element-found-in__line">614</span>
 
     </aside>
 
@@ -1800,7 +1904,9 @@ that match the given predicate.</p>
 
     <div class="phpdocumentor-label-line">
         </div>
-    
+        <section class="phpdocumentor-description"><p>This is a short-circuiting stateful intermediate operation.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -1834,7 +1940,7 @@ that match the given predicate.</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Stream/Stream.php"><a href="files/src-stream-stream.html"><abbr title="src/Stream/Stream.php">Stream.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">668</span>
+    <span class="phpdocumentor-element-found-in__line">714</span>
 
     </aside>
 
@@ -1970,6 +2076,7 @@ that match the given predicate.</p>
                 <ul class="phpdocumentor-list -clean">
                                             <li><a href="classes/MA-Stream-Stream.html#method_allMatch">allMatch()</a></li>
                                             <li><a href="classes/MA-Stream-Stream.html#method_anyMatch">anyMatch()</a></li>
+                                            <li><a href="classes/MA-Stream-Stream.html#method_chunk">chunk()</a></li>
                                             <li><a href="classes/MA-Stream-Stream.html#method_collect">collect()</a></li>
                                             <li><a href="classes/MA-Stream-Stream.html#method_concat">concat()</a></li>
                                             <li><a href="classes/MA-Stream-Stream.html#method_count">count()</a></li>
@@ -1977,6 +2084,7 @@ that match the given predicate.</p>
                                             <li><a href="classes/MA-Stream-Stream.html#method_dropWhile">dropWhile()</a></li>
                                             <li><a href="classes/MA-Stream-Stream.html#method_empty">empty()</a></li>
                                             <li><a href="classes/MA-Stream-Stream.html#method_filter">filter()</a></li>
+                                            <li><a href="classes/MA-Stream-Stream.html#method_findFirst">findFirst()</a></li>
                                             <li><a href="classes/MA-Stream-Stream.html#method_flatMap">flatMap()</a></li>
                                             <li><a href="classes/MA-Stream-Stream.html#method_flatten">flatten()</a></li>
                                             <li><a href="classes/MA-Stream-Stream.html#method_forEach">forEach()</a></li>

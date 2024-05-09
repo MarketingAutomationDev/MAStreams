@@ -38,7 +38,7 @@ class Stream implements \IteratorAggregate
      * @param Generator $stream
      * @ignore
      */
-    private function __construct(/** @ignore */private Generator $stream)
+    private function __construct(/** @ignore */ private Generator $stream)
     {
     }
 
@@ -606,6 +606,8 @@ class Stream implements \IteratorAggregate
      * Returns a stream consisting of the longest prefix of elements taken from this stream
      * that match the given predicate.
      *
+     * This is a short-circuiting stateful intermediate operation.
+     *
      * @param Closure $predicate
      * @return Stream
      */
@@ -632,12 +634,44 @@ class Stream implements \IteratorAggregate
      * Returns a stream consisting of the remaining elements of this stream
      * after dropping the longest prefix of elements that match the given predicate.
      *
+     * This is a stateful intermediate operation.
+     *
      * @param Closure $predicate
      * @return Stream
      */
     public function dropWhile(Closure $predicate): Stream
     {
         $this->stream = Stream::_dropWhile_closure($this->stream, $predicate);
+        return $this;
+    }
+
+    /**
+     * Returns a stream consisting of chunks with length elements.
+     * The last chunk may contain less than length elements.
+     * Each chunk is an array.
+     *
+     * This is a stateful intermediate operation.
+     *
+     * @param int $chunkSize
+     * @return Stream
+     */
+    public function chunk(int $chunkSize): Stream
+    {
+        $closure = static function (Generator $stream) use ($chunkSize): Generator {
+            $chunk = [];
+            foreach ($stream as $item) {
+                $chunk[] = $item;
+                if (count($chunk) >= $chunkSize) {
+                    yield $chunk;
+                    $chunk = [];
+                }
+            }
+            if (!empty($chunk))
+                yield $chunk;
+            unset($chunk);
+        };
+
+        $this->stream = $closure($this->stream);
         return $this;
     }
 
@@ -656,6 +690,18 @@ class Stream implements \IteratorAggregate
         }
     }
 
+    /**
+     * Returns the first element of this stream, or an null if the stream is empty.
+     *
+     * This is a short-circuiting terminal operation.
+     *
+     * @return mixed|null
+     */
+    public function findFirst(): mixed
+    {
+        return $this->stream->current();
+    }
+
     public function collect(Collector $collector)
     {
         $container = $collector->supplier();
@@ -670,10 +716,6 @@ class Stream implements \IteratorAggregate
         return iterator_to_array($this->stream, false);
     }
 
-
-    // reduce con Optional?
-    // findFirst / findAny
     // of() varargs?
     // mapMulti
-
 }
