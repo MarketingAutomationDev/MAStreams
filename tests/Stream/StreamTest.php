@@ -1,8 +1,8 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use RDA\Stream\Collectors;
-use RDA\Stream\Stream;
+use MA\Stream\Collectors;
+use MA\Stream\Stream;
 
 final class StreamTest extends TestCase
 {
@@ -278,6 +278,30 @@ final class StreamTest extends TestCase
                 ->collect(Collectors::of(fn() => new SplMaxHeap(), fn(SplMaxHeap &$u, $t) => $u->insert($t),
                     fn(&$a) => $a))
                 ->top()
+        );
+    }
+
+    public function testFindFirst(): void
+    {
+        $this->assertEquals(
+            20,
+            Stream::of([10, 20, 30])
+                ->skip(1)
+                ->findFirst()
+        );
+        $this->assertEquals(
+            null,
+            Stream::of([10, 20, 30])
+                ->skip(4)
+                ->findFirst()
+        );
+    }
+
+    public function testChunk(): void
+    {
+        $this->assertEquals(
+            [[1, 2, 3], [4, 5, 6], [7, 8]],
+            Stream::of([1, 2, 3, 4, 5, 6, 7, 8])->chunk(3)->toArray()
         );
     }
 }

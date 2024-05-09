@@ -211,10 +211,20 @@ Search.appendIndex(
             "summary": "Returns\u0020a\u0020stream\u0020consisting\u0020of\u0020the\u0020remaining\u0020elements\u0020of\u0020this\u0020stream\nafter\u0020dropping\u0020the\u0020longest\u0020prefix\u0020of\u0020elements\u0020that\u0020match\u0020the\u0020given\u0020predicate.",
             "url": "classes/MA-Stream-Stream.html#method_dropWhile"
         },                {
+            "fqsen": "\\MA\\Stream\\Stream\u003A\u003Achunk\u0028\u0029",
+            "name": "chunk",
+            "summary": "Returns\u0020a\u0020stream\u0020consisting\u0020of\u0020chunks\u0020with\u0020length\u0020elements.",
+            "url": "classes/MA-Stream-Stream.html#method_chunk"
+        },                {
             "fqsen": "\\MA\\Stream\\Stream\u003A\u003AforEach\u0028\u0029",
             "name": "forEach",
             "summary": "Performs\u0020an\u0020action\u0020for\u0020each\u0020element\u0020of\u0020this\u0020stream.",
             "url": "classes/MA-Stream-Stream.html#method_forEach"
+        },                {
+            "fqsen": "\\MA\\Stream\\Stream\u003A\u003AfindFirst\u0028\u0029",
+            "name": "findFirst",
+            "summary": "Returns\u0020the\u0020first\u0020element\u0020of\u0020this\u0020stream,\u0020or\u0020an\u0020null\u0020if\u0020the\u0020stream\u0020is\u0020empty.",
+            "url": "classes/MA-Stream-Stream.html#method_findFirst"
         },                {
             "fqsen": "\\MA\\Stream\\Stream\u003A\u003Acollect\u0028\u0029",
             "name": "collect",
