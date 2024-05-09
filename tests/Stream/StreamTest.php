@@ -1,8 +1,8 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use RDA\Stream\Collectors;
-use RDA\Stream\Stream;
+use MA\Stream\Collectors;
+use MA\Stream\Stream;
 
 final class StreamTest extends TestCase
 {
