@@ -280,4 +280,28 @@ final class StreamTest extends TestCase
                 ->top()
         );
     }
+
+    public function testFindFirst(): void
+    {
+        $this->assertEquals(
+            20,
+            Stream::of([10, 20, 30])
+                ->skip(1)
+                ->findFirst()
+        );
+        $this->assertEquals(
+            null,
+            Stream::of([10, 20, 30])
+                ->skip(4)
+                ->findFirst()
+        );
+    }
+
+    public function testChunk(): void
+    {
+        $this->assertEquals(
+            [[1, 2, 3], [4, 5, 6], [7, 8]],
+            Stream::of([1, 2, 3, 4, 5, 6, 7, 8])->chunk(3)->toArray()
+        );
+    }
 }
