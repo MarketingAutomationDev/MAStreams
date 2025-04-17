@@ -48,6 +48,9 @@ class Stream implements \IteratorAggregate
         return $this->stream;
     }
 
+    /**
+     * Returns an empty sequential Stream.
+     */
     public static function empty(): Stream
     {
         return Stream::of((function () {
@@ -63,6 +66,12 @@ class Stream implements \IteratorAggregate
         yield from $traversable;
     }
 
+    /**
+     * Returns a sequential ordered Stream from elements of the given iterable.
+     *
+     * @param Generator|iterable $traversable
+     * @return Stream
+     */
     public static function of(Generator|iterable $traversable): Stream
     {
         return new Stream(
@@ -96,7 +105,8 @@ class Stream implements \IteratorAggregate
     }
 
     /**
-     * Returns a sequential ordered IntStream from startInclusive (inclusive) to endExclusive (exclusive) by the specified incremental step.
+     * Returns a sequential ordered Stream of integers from startInclusive (inclusive) to endExclusive (exclusive)
+     * by the specified incremental step.
      *
      * @param int $startInclusive
      * @param int $endExclusive
@@ -116,7 +126,8 @@ class Stream implements \IteratorAggregate
     }
 
     /**
-     * Returns a sequential ordered IntStream from startInclusive (inclusive) to endExclusive (exclusive) by the specified incremental step.
+     * Returns a sequential ordered Stream of integers from startInclusive (inclusive) to endInclusive (inclusive)
+     * by the specified incremental step.
      *
      * @param int $startInclusive
      * @param int $endInclusive
@@ -207,6 +218,14 @@ class Stream implements \IteratorAggregate
             if ($f($item)) yield $item;
     }
 
+    /**
+     * Returns a stream consisting of the elements of this stream that match the given predicate.
+     *
+     * This is an intermediate operation.
+     *
+     * @param Closure $f a non-interfering, stateless predicate to apply to each element to determine if it should be included
+     * @return Stream
+     */
     public function filter(Closure $f): Stream
     {
         $this->stream = Stream::_map_filter($this->stream, $f);
@@ -227,12 +246,47 @@ class Stream implements \IteratorAggregate
             yield $f($item);
     }
 
+    /**
+     * Returns a stream consisting of the results of applying the given function to the elements of this stream.
+     *
+     * This is an intermediate operation.
+     *
+     * @param callable $f a non-interfering, stateless function to apply to each element
+     * @return Stream
+     */
     public function map(callable $f): Stream
     {
         $this->stream = Stream::_map_closure($this->stream, $f);
         return $this;
     }
 
+
+    /**
+     * Performs a reduction on the elements of this stream,
+     * using the provided identity value and an associative accumulation function, and returns the reduced value.
+     *
+     * This is equivalent to:
+     *
+     * ```
+     * $result = $identity;
+     * foreach ($this->stream as $item)
+     *     $result = $accumulator($result, $item);
+     * return $result;
+     * ```
+     *
+     * but it is not constrained to execute sequentially.
+     *
+     * The identity value must be an identity for the accumulator function.
+     * This means that for all t, accumulator.apply(identity, t) is equal to t.
+     *
+     * The accumulator function must be an associative function.
+     *
+     * This is a terminal operation.
+     *
+     * @param mixed   $identity
+     * @param Closure $accumulator
+     * @return mixed
+     */
     public function reduce(mixed $identity, Closure $accumulator)
     {
         $result = $identity;
@@ -702,6 +756,16 @@ class Stream implements \IteratorAggregate
         return $this->stream->current();
     }
 
+    /**
+     * Performs a mutable reduction operation on the elements of this stream
+     * using a Collector. The reduction operation provides a means of collecting
+     * elements into a container defined by the Collector.
+     *
+     * This is a terminal operation.
+     *
+     * @param Collector $collector The collector that encapsulates the reduction logic.
+     * @return mixed The result of the reduction operation, determined by the Collector's finisher.
+     */
     public function collect(Collector $collector)
     {
         $container = $collector->supplier();
@@ -711,11 +775,15 @@ class Stream implements \IteratorAggregate
         return $collector->finisher($container);
     }
 
+    /**
+     * Returns an array containing the elements of this stream.
+     *
+     * This is a terminal operation.
+     *
+     * @return array an array containing the elements of this stream
+     */
     public function toArray(): array
     {
         return iterator_to_array($this->stream, false);
     }
-
-    // of() varargs?
-    // mapMulti
 }
