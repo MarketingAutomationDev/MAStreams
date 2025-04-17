@@ -1,8 +1,10 @@
 <?php
 namespace MA\Stream;
 
-// TODO supplier e accumulator non dovrebbero usare mixed sul mutable result container
-
+/**
+ * Interface representing a mechanism for collecting elements into a mutable container
+ * and applying a finishing transformation to produce a final result.
+ */
 interface Collector
 {
 	/**
